@@ -1,5 +1,9 @@
 const FlowRouter = Package['kadira:flow-router'] ? Package['kadira:flow-router'].FlowRouter : false;
 
+function _replaceDot(routeName) {
+  return routeName.replace(/\./gi, "-");
+}
+
 const routeClasses = () => {
   let classes = [];
 
@@ -19,7 +23,7 @@ const routeClasses = () => {
     }
 
     let route = FlowRouter.current().route;
-    classes = [route.name, getRouteLayout(route)];
+    classes = [_replaceDot(route.name), getRouteLayout(route)];
   }
 
   return _.chain(classes)
